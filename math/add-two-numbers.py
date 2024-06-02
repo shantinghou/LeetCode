@@ -17,7 +17,6 @@ class Solution(object):
             s = c1.val + c2.val + add
             add = s // 10
             head.val = s % 10
-            print(s, add, head.val)
             c1 = c1.next
             c2 = c2.next
         rest = c1
