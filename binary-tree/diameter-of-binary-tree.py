@@ -11,9 +11,14 @@ class Solution:
         return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
 
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        if root == None:
-            return 0
-        left = self.maxDepth(root.left)
-        right = self.maxDepth(root.right)
-        dia = left + right
-        return max(dia, max(self.diameterOfBinaryTree(root.left), self.diameterOfBinaryTree(root.right)))
+        dia = [0]
+        def dfs(root):
+            if root == None:
+                return -1
+            left = dfs(root.left)
+            right = dfs(root.right)
+            total = left + right + 2
+            dia[0] = max(dia[0], total)
+            return max(left, right) + 1
+        dfs(root)
+        return dia[0]
