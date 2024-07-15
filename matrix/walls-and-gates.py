@@ -23,7 +23,7 @@ class Solution:
             for ir, ic in dirs:
                 nr = ir + r
                 nc = ic + c
-                if valid(nr, nc) and rooms[nr][nc] > 1000000:
+                if valid(nr, nc) and rooms[nr][nc] > 10000:
                     queue.append((nr, nc, count))
 
         return rooms
