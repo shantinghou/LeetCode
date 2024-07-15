@@ -11,19 +11,19 @@ class Solution:
         for r in range(len(rooms)):
             for c in range(len(rooms[r])):
                 if rooms[r][c] == 0:
-                    queue.append((r, c, 0))
+                    queue.append((r, c))
         
         while queue:
-            r, c, count = queue.popleft()
+            r, c = queue.popleft()
             if rooms[r][c] == -1:
                 continue
-            elif rooms[r][c] != 0:
-                count += 1
-            rooms[r][c] = min(count, rooms[r][c])
             for ir, ic in dirs:
                 nr = ir + r
                 nc = ic + c
-                if valid(nr, nc) and rooms[nr][nc] > 10000:
-                    queue.append((nr, nc, count))
+                if valid(nr, nc) and rooms[nr][nc] == 0:
+                    continue
+                if valid(nr, nc) and rooms[nr][nc] > 10000000:
+                    rooms[nr][nc] = rooms[r][c] + 1
+                    queue.append((nr, nc))
 
         return rooms
